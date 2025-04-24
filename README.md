@@ -32,6 +32,25 @@ El enfoque del proyecto está centrado en:
 
 * Analizar los sub-tokens y merges generados para identificar patrones lingüísticos
 
+## 💻 Instrucciones para configurar el entorno con Docker
+
+#### 1. Clonar el repositorio  
+
+```
+git clone https://github.com/GabrielaC01/nlp-proyecto02.git
+```
+#### 2. Construir la imagen Docker
+
+```
+docker build -t mi-imagen-nlp .
+```
+#### 3. Ejecutar el contenedor y acceder a JupyterLab
+```
+sudo docker run -it --rm \
+    -p 8888:8888 \
+    -v /tu-ruta/nlp-proyecto02/notebooks:/home/jovyan/work \
+    mi-imagen-nlp
+```
 
 ## 👩‍💻 Maintainers
 * Gabriela Colque, Github: [GabrielaC16](https://github.com/GabrielaC16/) Email: gabriela.colque.u@uni.pe   
