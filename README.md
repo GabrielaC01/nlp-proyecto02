@@ -5,32 +5,36 @@
 
 ## 📃 Descripción
 
-Implementación de un sistema de **tokenización** basado en **Byte-Pair Encoding (BPE)** que ajusta será dinámicamente su vocabulario para maximizar la cobertura y reducir los términos fuera de vocabulario (**OOV**), evaluando su impacto en **modelos de lenguaje n-grama y neuronales**
+Implementación de un sistema de **tokenización** basado en **Byte-Pair Encoding (BPE)** que ajusta dinámicamente su vocabulario para maximizar la cobertura y reducir los términos fuera de vocabulario (**OOV**), evaluando su impacto en **modelos de lenguaje n-grama y neuronales**
 
 ## 📊 Dataset
 
-Se utilizará el dataset **WikiText-103** de Hugging Face, que consiste en artículos de Wikipedia en inglés, para observar el comportamiento de la tokenización, la cobertura del vocabulario y el rendimiento de los modelos entrenados.
+Se utilizará el dataset **[WikiText-103](https://huggingface.co/datasets/wikitext)** disponible en Hugging Face, el cual contiene artículos de Wikipedia en inglés. Este corpus es ampliamente utilizado para entrenar y evaluar modelos de lenguaje debido a su tamaño y riqueza léxica.
 
-- **Origen**: [WikiText-103 en Hugging Face](https://huggingface.co/datasets/wikitext)
+La carga del dataset se realiza dinámicamente utilizando el paquete `datasets` de Hugging Face. 
+El procedimiento detallado de carga puede consultarse en el notebook [`01_data_loading.ipynb`](notebooks/01_data_loading.ipynb) incluido en este repositorio.
+
+Este dataset será utilizado para observar el comportamiento de la tokenización, la cobertura del vocabulario y el rendimiento de los modelos entrenados.
+
 
 ## 💻 Enfoque
 El enfoque del proyecto está centrado en:
 
-* Implementar un sistema de BPE para tokenizar texto
+1. Implementar un sistema de BPE para tokenizar texto
 
-* Experimentar con distintos tamaños de vocabulario
+2. Experimentar con distintos tamaños de vocabulario
 
-* Aplicar subword regularization mediante muestreo estocástico
+3. Aplicar subword regularization mediante muestreo estocástico
 
-* Entrenar modelos de lenguaje:
+4. Entrenar modelos de lenguaje:
+  
+    - n-grama (orden 3–5), evaluando perplejidad
+  
+    - RNN simple, evaluando convergencia
 
-  * n-grama (orden 3–5), evaluando perplejidad
+5. Visualizar los embeddings de sub-tokens con PCA o t-SNE
 
-  * RNN simple, evaluando convergencia
-
-* Visualizar los embeddings de sub-tokens con PCA o t-SNE
-
-* Analizar los sub-tokens y merges generados para identificar patrones lingüísticos
+6. Analizar los sub-tokens y merges generados para identificar patrones lingüísticos
 
 ## 💻 Instrucciones para configurar el entorno con Docker
 
