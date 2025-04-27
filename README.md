@@ -52,7 +52,7 @@ docker build -t mi-imagen-nlp .
 ```
 sudo docker run -it --rm \
     -p 8888:8888 \
-    -v /tu-ruta/nlp-proyecto02/notebooks:/home/jovyan/work \
+    -v /tu-ruta/nlp-proyecto02:/home/jovyan/work \
     mi-imagen-nlp
 ```
 
