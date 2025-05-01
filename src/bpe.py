@@ -1,4 +1,5 @@
 from collections import Counter
+import random
 
 class BytePairEncoding:
     def __init__(self, num_merges):
@@ -83,3 +84,23 @@ class BytePairEncoding:
 
     def get_vocabulary(self):  # Devuelve el vocabulario actual de trabajo
         return self.vocab
+    
+    def tokenize_with_sampling(self, word, prob=0.5):
+        tokens = list(word)
+        for merge in self.merges:
+            new_token = ''.join(merge)
+            merged_word = []
+            i = 0
+            while i < len(tokens):
+                if (
+                    i < len(tokens) - 1
+                    and (tokens[i], tokens[i + 1]) == merge
+                    and random.random() < prob  # ← probabilidad de aplicar el merge
+                ):
+                    merged_word.append(new_token)
+                    i += 2
+                else:
+                    merged_word.append(tokens[i])
+                    i += 1
+            tokens = merged_word
+        return tokens
