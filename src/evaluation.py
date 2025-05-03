@@ -47,3 +47,26 @@ def plot_training_loss(training_loss, filename='training_loss.csv'):
     plt.legend()
     plt.grid(True)
     plt.show()
+    
+
+# Entrenar modelo RNN con padding 
+def entrenar_rnn(model, dataloader, vocab_size, epochs=10, lr=0.01):
+    criterion = nn.CrossEntropyLoss(ignore_index=0)
+    optimizer = optim.Adam(model.parameters(), lr=lr)
+    training_loss = []
+
+    for epoch in range(epochs):
+        model.train()
+        total_loss = 0
+        for input_seq, target_seq in dataloader:
+            output = model(input_seq)
+            loss = criterion(output.view(-1, vocab_size), target_seq.view(-1))
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+            total_loss += loss.item()
+        avg_loss = total_loss / len(dataloader)
+        training_loss.append(avg_loss)
+        print(f"Época {epoch+1}/{epochs} - Pérdida: {avg_loss:.4f}")
+
+    return training_loss
